@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="samples\kk\V1600014606.html" />
+    <Content Include="samples\ru\V1600014606.html" />
+    <Compile Include="Tests.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Argon.FSharp" />
+    <PackageReference Include="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Verify.XunitV3" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\law-nlp-processor\law-nlp-processor.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="gold\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="gold\*.txt" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+</Project>
