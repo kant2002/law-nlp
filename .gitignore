@@ -8,3 +8,4 @@ obj/
 *.received.txt
 launchSettings.json
 *.user
+/database
