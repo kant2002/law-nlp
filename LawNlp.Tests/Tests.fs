@@ -34,3 +34,9 @@ let MyTest2 () =
     let ruFile = readSample "ru" "V1600014592.html"
     let parsedData = разобратьHtmlАдилетЗанКз ruFile
     verify parsedData
+
+[<Fact>]
+let MyTest3 () =
+    let ruFile = readSample "kk" "V1600014606.html"
+    let parsedData = разобратьHtmlАдилетЗанКз ruFile
+    verify parsedData
