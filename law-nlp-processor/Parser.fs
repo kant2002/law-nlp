@@ -4,6 +4,7 @@ open System
 
 type СтатусДокумента =
     | УтратилСилу
+    | Обновленный
 
 type ДокументАдилетЗанКз = {
     Название: string
@@ -12,9 +13,10 @@ type ДокументАдилетЗанКз = {
 }
 
 let разобратьСтатусДокумента (узел: HtmlNode) =
-    match (узел.HasClass("status_yts")) with
-    | true -> УтратилСилу
-    | _ -> failwithf "Неизвестный статус документа: %s" (узел.InnerText())
+    match (узел.HasClass("status_yts"), узел.HasClass("status_upd")) with
+    | true, false -> УтратилСилу
+    | false, true -> Обновленный
+    | _ -> failwithf "Неизвестный статус документа: %s (%s)" (узел.InnerText()) (узел.ToString())
 
 let разобратьПереходы (узел: HtmlNode) =
     let переходы = 

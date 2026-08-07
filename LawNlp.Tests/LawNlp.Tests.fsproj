@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Content Include="samples\kk\V1600014606.html" />
+    <Content Include="samples\ru\V1600014592.html" />
     <Content Include="samples\ru\V1600014606.html" />
     <Compile Include="Tests.fs" />
   </ItemGroup>
@@ -28,10 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\law-nlp-processor\law-nlp-processor.fsproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="gold\" />
   </ItemGroup>
 
   <ItemGroup>
