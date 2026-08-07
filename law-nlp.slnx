@@ -4,6 +4,7 @@
     <File Path="Directory.Packages.props" />
     <File Path="LICENSE.txt" />
     <File Path="README.md" />
+    <File Path="льготы_по_налогам_и_сборам.txt" />
   </Folder>
   <Project Path="law-nlp-processor/law-nlp-processor.fsproj" />
   <Project Path="LawNlp.Tests/LawNlp.Tests.fsproj" Id="a03a3b64-7424-4e0f-8677-d78dd437e4e7" />
