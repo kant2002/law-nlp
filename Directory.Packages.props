@@ -4,6 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Argon.FSharp" Version="0.35.2" />
+    <PackageVersion Include="Argu" Version="6.2.5" />
     <PackageVersion Include="coverlet.collector" Version="10.0.1" />
     <PackageVersion Include="FSharp.Data" Version="8.2.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />

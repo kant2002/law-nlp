@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Argu" />
     <PackageReference Include="FSharp.Data" />
   </ItemGroup>
 
