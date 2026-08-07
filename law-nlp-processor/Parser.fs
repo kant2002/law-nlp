@@ -23,9 +23,7 @@ let разобратьПереходы (узел: HtmlNode) =
         |> Array.toList
     переходы
 
-let разобратьHtmlАдилетЗанКз (html: string): ДокументАдилетЗанКз =
-    let документ = HtmlDocument.Parse html
-
+let разобратьАдилетЗанКз (документ: HtmlDocument): ДокументАдилетЗанКз =
     let разборСss (селектор: string) (обработчик: HtmlNode -> 'a) =
         документ.CssSelect(селектор)
         |> List.map обработчик
@@ -35,3 +33,7 @@ let разобратьHtmlАдилетЗанКз (html: string): Докумен�
     let переходы = разборСss ".container_alpha.slogan p" разобратьПереходы
     let контейнерТекста = разборСss ".container_gamma.text" (fun у -> у.InnerText())
     { Название = название; Статус = статус; Переходы = переходы }
+
+let разобратьHtmlАдилетЗанКз (html: string): ДокументАдилетЗанКз =
+    let документ = HtmlDocument.Parse html
+    разобратьАдилетЗанКз документ
