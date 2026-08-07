@@ -1,5 +1,6 @@
 module LawNlp.Parser
 open FSharp.Data
+open System
 
 type СтатусДокумента =
     | УтратилСилу
@@ -7,6 +8,7 @@ type СтатусДокумента =
 type ДокументАдилетЗанКз = {
     Название: string
     Статус: СтатусДокумента
+    Переходы: string list
 }
 
 let разобратьСтатусДокумента (узел: HtmlNode) =
@@ -14,9 +16,22 @@ let разобратьСтатусДокумента (узел: HtmlNode) =
     | true -> УтратилСилу
     | _ -> failwithf "Неизвестный статус документа: %s" (узел.InnerText())
 
+let разобратьПереходы (узел: HtmlNode) =
+    let переходы = 
+        узел.InnerText().Split([|'.'|], StringSplitOptions.RemoveEmptyEntries)
+        |> Array.map (fun s -> s.Trim())
+        |> Array.toList
+    переходы
+
 let разобратьHtmlАдилетЗанКз (html: string): ДокументАдилетЗанКз =
     let документ = HtmlDocument.Parse html
-    let название = документ.CssSelect("h1") |> List.map (fun у -> у.InnerText()) |> List.exactlyOne
-    let статус = документ.CssSelect(".status") |> List.map разобратьСтатусДокумента |> List.exactlyOne
-    let контейнерТекста = документ.CssSelect(".container_gamma.text") |> List.exactlyOne
-    { Название = название; Статус = статус }
+
+    let разборСss (селектор: string) (обработчик: HtmlNode -> 'a) =
+        документ.CssSelect(селектор)
+        |> List.map обработчик
+        |> List.exactlyOne
+    let название = разборСss "h1" (fun у -> у.InnerText())
+    let статус = разборСss ".status" разобратьСтатусДокумента
+    let переходы = разборСss ".container_alpha.slogan p" разобратьПереходы
+    let контейнерТекста = разборСss ".container_gamma.text" (fun у -> у.InnerText())
+    { Название = название; Статус = статус; Переходы = переходы }
