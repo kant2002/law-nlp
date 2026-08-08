@@ -4,6 +4,7 @@
     <File Path="Directory.Packages.props" />
     <File Path="download_db.ps1" />
     <File Path="LICENSE.txt" />
+    <File Path="Process-Folder.ps1" />
     <File Path="README.md" />
     <File Path="льготы_по_налогам_и_сборам.txt" />
   </Folder>
