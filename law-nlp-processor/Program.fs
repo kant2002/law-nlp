@@ -28,7 +28,9 @@ let main argv =
     | None, Some filePath ->
         let документ = HtmlDocument.Load filePath
         let разобранныйДокумент = разобратьАдилетЗанКз документ
-        printfn "Разобранный документ: %A" разобранныйДокумент
+        //printfn "Разобранный документ: %A" разобранныйДокумент
+        for line in разобранныйДокумент.Переходы do
+            printfn "%s" line
     | _, _ ->
         printfn "Invalid arguments. Please specify either a HTML URL or a file path."
     0

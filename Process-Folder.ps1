@@ -16,12 +16,15 @@ param (
     [Parameter(Mandatory = $False)]
     [int]$Count
 )
-dotnet build law-nlp-processor
+dotnet build law-nlp-processor --configuration Release | Out-Null
 $processedCount = 0
 foreach ($line in Get-ChildItem $FilePath) {
     $name = $line.Name
-    Write-Host "Processing: $name"
-    dotnet run --no-build --no-launch-profile --project law-nlp-processor -- --file $line.FullName
+    #Write-Host "Processing: $name"
+    $transitions = $(dotnet run --no-build --configuration Release --no-launch-profile --project law-nlp-processor -- --file $line.FullName)
+    foreach ($transition in $transitions) {
+        Write-Output "$name|$transition"
+    }
     $processedCount++
     if ($Count -and $processedCount -ge $Count) {
         break
